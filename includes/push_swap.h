@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 12:02:50 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/09 21:02:02 by znicola          ###   ########.fr       */
+/*   Updated: 2024/12/17 19:19:11 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	ft_lstadd_backcircular(t_clist **lst, t_clist *new);
 t_clist	*ft_lstlastcircular(t_clist *lst);
 void	ft_lstclearcircular(t_clist **lst, void (*del)(void *));
 void	ft_lstdelonecircular(t_clist *lst, void (*del)(void *));
+int		ft_lstsizecircular(t_clist *lst);
 
 #endif

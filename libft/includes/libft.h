@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 11:50:20 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/09 18:59:14 by znicola          ###   ########.fr       */
+/*   Updated: 2024/12/17 17:35:38 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <limits.h>
 
 typedef struct s_list
 {
