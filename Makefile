@@ -5,7 +5,7 @@ CFLAGS = -Wextra -Werror -Wall
 
 SRC_DIR = src
 SRCS = main.c push_swap.c utils.c ft_lstnewcircular.c ft_lstadd_backcircular.c ft_lstlastcircular.c \
-ft_lstclearcircular.c ft_lstdelonecircular.c ft_lstsizecircular.c
+ft_lstclearcircular.c ft_lstdelonecircular.c ft_lstsizecircular.c simple_sort_stack.c
 
 OBJS = $(addprefix $(SRC_DIR)/, $(SRCS:.c=.o))
 

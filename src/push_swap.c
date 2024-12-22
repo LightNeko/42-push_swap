@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/18 23:11:11 by znicola          ###   ########.fr       */
+/*   Updated: 2024/12/23 00:19:56 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,15 @@ static int	radix_sort_stack(t_clist **start, t_clist **end)
 	i = 0;
 	while (i <= msb)
 	{
-		if (*start == NULL || is_sorted(*start))
-			break ;
+		j = ft_lstsizecircular(*end);
+		while (j != 0)
+		{
+			if (((*(int *)(*end)->content >> i) & 1))
+				push(end, start, 'a');
+			else
+				rotate(start, end, "b");
+			j--;
+		}
 		j = ft_lstsizecircular(*start);
 		while (j != 0)
 		{
@@ -76,22 +83,29 @@ static int	radix_sort_stack(t_clist **start, t_clist **end)
 				rotate(start, end, "a");
 			j--;
 		}
-		while (*end)
-			push(end, start, 'a');
 		i++;
 	}
+	while (*end)
+		push(end, start, 'a');
 	return (0);
 }
 
-int	push_swap(t_clist *stack_a)
+int	push_swap(t_clist *stack_a, int size)
 {
 	t_clist	*stack_b;
-//	t_clist	*current;
+	//t_clist	*current;
 
 	stack_b = NULL;	
-	radix_sort_stack(&stack_a, &stack_b);
-//	current = stack_a;
-/*	ft_printf("\nSTACK_A\n");
+	if (is_sorted(stack_a))
+		return (0);
+	if (size <= 3)
+		simple_sort_stack(&stack_a, &stack_b, 0);
+	else if (size <= 5)
+		five_sort_stack(&stack_a, &stack_b, size);
+	else if (size <= 500)
+		radix_sort_stack(&stack_a, &stack_b);
+	/*current = stack_a;
+	ft_printf("\nSTACK_A\n");
 	while (current)
 	{
 		ft_printf("%d\n",*(int *)current->content);
@@ -107,7 +121,6 @@ int	push_swap(t_clist *stack_a)
 		current = current->next;
 		if (current == stack_b)
 			break ;
-	}
-*/
+	}*/
 	return (0);
 }

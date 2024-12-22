@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:00:48 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/17 17:40:02 by znicola          ###   ########.fr       */
+/*   Updated: 2024/12/22 22:55:07 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@ int	swap(t_clist **stack_a, t_clist **stack_b, char flag)
 
 	if (*stack_a && (flag == 'a' || flag == 's'))
 	{
-		ft_printf("swapping a\n");
 		temp = (*stack_a)->content;
 		(*stack_a)->content = (*stack_a)->next->content;
 		(*stack_a)->next->content = temp;
 	}
 	if (*stack_b && (flag == 'b' || flag == 's'))
 	{
-		ft_printf("swapping b\n");
 		temp = (*stack_b)->content;
 		(*stack_b)->content = (*stack_b)->next->content;
 		(*stack_b)->next->content = temp;
