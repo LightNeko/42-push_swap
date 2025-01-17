@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/23 00:19:56 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/17 12:35:57 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,13 @@ static int	is_sorted(t_clist *stack)
 	return	(1);
 }
 
-static int	get_msb(t_clist *stack)
-{
-	int				msb;
-	unsigned int	value;
-	int				bit_position;
-	t_clist			*current;
-
-	msb = 0;
-	current = stack;
-	while (current)
-	{
-		value = *(int *)(current->content);
-		bit_position = 0;
-		while (value > 0)
-		{
-			value >>= 1;
-			bit_position++;
-		}
-		if (bit_position > msb)
-			msb = bit_position;
-		current = current->next;
-		if (current == stack)
-			break ;
-	}
-	return (msb - 1);
-}
-
 static int	radix_sort_stack(t_clist **start, t_clist **end)
 {
 	int	i;
 	int	j;	
-	int	msb;
 
-	msb = get_msb(*start);
 	i = 0;
-	while (i <= msb)
+	while (i < 7)
 	{
 		j = ft_lstsizecircular(*end);
 		while (j != 0)
