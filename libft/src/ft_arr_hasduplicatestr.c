@@ -6,7 +6,7 @@
 /*   By: znicola <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 13:28:44 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/17 14:15:58 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/20 23:09:01 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	ft_arr_hasduplicatestr(int size, char **strarr)
 	int	j;
 
 	if (size < 2)
-		return(0);
-	
+		return (0);
 	i = 0;
 	while (i < size)
 	{

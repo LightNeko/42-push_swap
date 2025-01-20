@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/17 12:35:57 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/20 23:06:13 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	is_sorted(t_clist *stack)
 {
-	t_clist *current;
+	t_clist	*current;
 
 	if (!stack || stack->next == stack)
 		return (1);
@@ -25,35 +25,48 @@ static int	is_sorted(t_clist *stack)
 			return (0);
 		current = current->next;
 	}
-	return	(1);
+	return (1);
+}
+
+static void	sort_type_a(t_clist **start, t_clist **end, int i)
+{
+	int	j;
+
+	j = ft_lstsizecircular(*end);
+	while (j != 0)
+	{
+		if (((*(int *)(*end)->content >> i) & 1))
+			push(end, start, 'a');
+		else
+			rotate(start, end, "b");
+		j--;
+	}
+}
+
+static void	sort_type_b(t_clist **start, t_clist **end, int i)
+{
+	int	j;
+
+	j = ft_lstsizecircular(*start);
+	while (j != 0)
+	{
+		if (!((*(int *)(*start)->content >> i) & 1))
+			push(start, end, 'b');
+		else
+			rotate(start, end, "a");
+		j--;
+	}
 }
 
 static int	radix_sort_stack(t_clist **start, t_clist **end)
 {
 	int	i;
-	int	j;	
 
 	i = 0;
-	while (i < 7)
+	while (i < 9)
 	{
-		j = ft_lstsizecircular(*end);
-		while (j != 0)
-		{
-			if (((*(int *)(*end)->content >> i) & 1))
-				push(end, start, 'a');
-			else
-				rotate(start, end, "b");
-			j--;
-		}
-		j = ft_lstsizecircular(*start);
-		while (j != 0)
-		{
-			if (!((*(int *)(*start)->content >> i) & 1))
-				push(start, end, 'b');
-			else
-				rotate(start, end, "a");
-			j--;
-		}
+		sort_type_a(start, end, i);
+		sort_type_b(start, end, i);
 		i++;
 	}
 	while (*end)
@@ -64,9 +77,8 @@ static int	radix_sort_stack(t_clist **start, t_clist **end)
 int	push_swap(t_clist *stack_a, int size)
 {
 	t_clist	*stack_b;
-	//t_clist	*current;
 
-	stack_b = NULL;	
+	stack_b = NULL;
 	if (is_sorted(stack_a))
 		return (0);
 	if (size <= 3)
@@ -75,23 +87,5 @@ int	push_swap(t_clist *stack_a, int size)
 		five_sort_stack(&stack_a, &stack_b, size);
 	else if (size <= 500)
 		radix_sort_stack(&stack_a, &stack_b);
-	/*current = stack_a;
-	ft_printf("\nSTACK_A\n");
-	while (current)
-	{
-		ft_printf("%d\n",*(int *)current->content);
-		current = current->next;
-		if (current == stack_a)
-			break ;
-	}
-	current = stack_b;
-	ft_printf("\nSTACK B\n");
-	while (current)
-	{
-		ft_printf("%d\n",*(int *)current->content);
-		current = current->next;
-		if (current == stack_b)
-			break ;
-	}*/
 	return (0);
 }

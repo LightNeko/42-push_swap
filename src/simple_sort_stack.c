@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 22:34:33 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/23 00:20:08 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/20 22:26:53 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	simple_sort_stack(t_clist **start, t_clist **end, int min)
 
 int	five_sort_stack(t_clist **start, t_clist **end, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

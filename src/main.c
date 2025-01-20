@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/17 16:14:03 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/20 23:07:26 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,15 @@ t_clist	*generate_stack(int argc, ssize_t *content)
 	while (i < argc - 1)
 	{
 		node_content = malloc(sizeof(ssize_t));
+		if (!node_content)
+			exit(1);
 		*node_content = content[i];
 		new_node = ft_lstnewcircular(node_content);
 		if (!new_node)
+		{
+			free(node_content);
 			exit(1);
+		}
 		ft_lstadd_backcircular(&stack, new_node);
 		i++;
 	}
@@ -82,7 +87,7 @@ t_clist	*generate_stack(int argc, ssize_t *content)
 ssize_t	*init_content(int argc, char **argv)
 {
 	ssize_t	*content;
-	int	i;
+	int		i;
 
 	content = malloc((argc - 1) * sizeof(ssize_t));
 	if (!content)
@@ -94,6 +99,7 @@ ssize_t	*init_content(int argc, char **argv)
 		if (!ft_isnumber(argv[i]) || ft_arr_hasduplicatestr(argc, argv)
 			|| content[i - 1] > INT_MAX)
 		{
+			free(content);
 			ft_printf("Error\n");
 			exit(1);
 		}
@@ -109,10 +115,7 @@ int	main(int argc, char **argv)
 	ssize_t		*compressed;
 
 	if (argc < 2)
-	{
-		ft_printf("Error\n");
-		exit(1);
-	}
+		return (0);
 	content = init_content(argc, argv);
 	compressed = arr_compress(content, argc - 1);
 	free(content);
