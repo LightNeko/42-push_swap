@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/21 00:06:18 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:30:02 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 ssize_t	find_next_min(ssize_t *value, int size)
 {
-	static int	last_min = INT_MIN;
-	int			min;
-	int			min_index;
-	int			i;
+	static ssize_t	last_min = -2147483649;
+	int				min;
+	int				min_index;
+	int				i;
 
 	min = INT_MAX;
 	min_index = -1;
@@ -97,7 +97,7 @@ ssize_t	*init_content(int argc, char **argv)
 	{
 		content[i - 1] = ft_atoi(argv[i]);
 		if (!ft_isnumber(argv[i]) || ft_arr_hasduplicatestr(argc, argv)
-			|| content[i - 1] > INT_MAX)
+			|| content[i - 1] > INT_MAX || content[i - 1] < INT_MIN)
 		{
 			free(content);
 			ft_printf("Error\n");

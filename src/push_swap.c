@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/21 00:06:20 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:41:52 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ static void	sort_type_b(t_clist **start, t_clist **end, int i)
 	}
 }
 
-static int	radix_sort_stack(t_clist **start, t_clist **end)
+static int	radix_sort_stack(t_clist **start, t_clist **end, int flag)
 {
 	int	i;
 
 	i = 0;
-	while (i < 9)
+	while (i < flag)
 	{
 		sort_type_a(start, end, i);
 		sort_type_b(start, end, i);
@@ -85,7 +85,9 @@ int	push_swap(t_clist *stack_a, int size)
 		simple_sort_stack(&stack_a, &stack_b, 0);
 	else if (size <= 5)
 		five_sort_stack(&stack_a, &stack_b, size);
+	else if (size <= 100)
+		radix_sort_stack(&stack_a, &stack_b, 8);
 	else if (size <= 500)
-		radix_sort_stack(&stack_a, &stack_b);
+		radix_sort_stack(&stack_a, &stack_b, 9);
 	return (0);
 }
