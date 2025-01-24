@@ -6,13 +6,13 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/21 15:30:02 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/24 15:16:32 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-ssize_t	find_next_min(ssize_t *value, int size)
+static ssize_t	find_next_min(ssize_t *value, int size)
 {
 	static ssize_t	last_min = -2147483649;
 	int				min;
@@ -36,7 +36,7 @@ ssize_t	find_next_min(ssize_t *value, int size)
 	return (min_index);
 }
 
-ssize_t	*arr_compress(ssize_t *value, int size)
+static ssize_t	*arr_compress(ssize_t *value, int size)
 {
 	ssize_t	*result;
 	int		min_index;
@@ -57,7 +57,7 @@ ssize_t	*arr_compress(ssize_t *value, int size)
 	return (result);
 }
 
-t_clist	*generate_stack(int argc, ssize_t *content)
+static t_clist	*generate_stack(int argc, ssize_t *content)
 {
 	t_clist	*stack;
 	ssize_t	*node_content;
@@ -66,7 +66,7 @@ t_clist	*generate_stack(int argc, ssize_t *content)
 
 	stack = NULL;
 	i = 0;
-	while (i < argc - 1)
+	while (i < argc)
 	{
 		node_content = malloc(sizeof(ssize_t));
 		if (!node_content)
@@ -84,20 +84,20 @@ t_clist	*generate_stack(int argc, ssize_t *content)
 	return (stack);
 }
 
-ssize_t	*init_content(int argc, char **argv)
+static ssize_t	*init_content(int argc, char **argv)
 {
 	ssize_t	*content;
 	int		i;
 
-	content = malloc((argc - 1) * sizeof(ssize_t));
+	content = malloc((argc) * sizeof(ssize_t));
 	if (!content)
 		return (NULL);
-	i = 1;
+	i = 0;
 	while (i < argc)
 	{
-		content[i - 1] = ft_atoi(argv[i]);
+		content[i] = ft_atoi(argv[i]);
 		if (!ft_isnumber(argv[i]) || ft_arr_hasduplicatestr(argc, argv)
-			|| content[i - 1] > INT_MAX || content[i - 1] < INT_MIN)
+			|| content[i] > INT_MAX || content[i] < INT_MIN)
 		{
 			free(content);
 			ft_printf("Error\n");
@@ -111,17 +111,28 @@ ssize_t	*init_content(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_clist		*stack_a;
+	char		**numarr;
 	ssize_t		*content;
 	ssize_t		*compressed;
+	int			num_count;
 
 	if (argc < 2)
 		return (0);
-	content = init_content(argc, argv);
-	compressed = arr_compress(content, argc - 1);
+	if (argc == 2)
+		numarr = ft_split(argv[1], ' ');
+	else
+		numarr = argv + 1;
+	num_count = 0;
+	while (numarr[num_count])
+		num_count++;
+	content = init_content(num_count, numarr);
+	if (argc == 2)
+		free(numarr);
+	compressed = arr_compress(content, num_count);
 	free(content);
-	stack_a = generate_stack(argc, compressed);
+	stack_a = generate_stack(num_count, compressed);
 	free(compressed);
-	push_swap(stack_a, argc - 1);
+	push_swap(stack_a, num_count);
 	ft_lstclearcircular(&stack_a, free);
 	return (0);
 }

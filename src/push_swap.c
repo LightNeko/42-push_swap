@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/21 16:41:52 by znicola          ###   ########.fr       */
+/*   Updated: 2025/01/24 16:21:21 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,17 @@ static int	radix_sort_stack(t_clist **start, t_clist **end, int flag)
 int	push_swap(t_clist *stack_a, int size)
 {
 	t_clist	*stack_b;
+	int max_bits;
 
 	stack_b = NULL;
+	max_bits = calculate_bit_size(size - 1);
 	if (is_sorted(stack_a))
 		return (0);
 	if (size <= 3)
 		simple_sort_stack(&stack_a, &stack_b, 0);
 	else if (size <= 5)
 		five_sort_stack(&stack_a, &stack_b, size);
-	else if (size <= 100)
-		radix_sort_stack(&stack_a, &stack_b, 8);
-	else if (size <= 500)
-		radix_sort_stack(&stack_a, &stack_b, 9);
+	else
+		radix_sort_stack(&stack_a, &stack_b, max_bits);
 	return (0);
 }
