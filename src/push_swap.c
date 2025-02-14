@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 17:19:08 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/24 16:21:21 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/14 10:33:23 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	radix_sort_stack(t_clist **start, t_clist **end, int flag)
 int	push_swap(t_clist *stack_a, int size)
 {
 	t_clist	*stack_b;
-	int max_bits;
+	int		max_bits;
 
 	stack_b = NULL;
 	max_bits = calculate_bit_size(size - 1);

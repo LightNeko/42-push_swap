@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:00:48 by znicola           #+#    #+#             */
-/*   Updated: 2024/12/22 22:55:07 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:05:51 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,18 @@ int	rotate(t_clist **stack_a, t_clist **stack_b, const char *flag)
 		*stack_b = (*stack_b)->prev;
 	ft_printf("r%s\n", flag);
 	return (0);
+}
+
+void	free_split(char **arr)
+{
+	int	i = 0;
+
+	if (!arr)
+		return;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

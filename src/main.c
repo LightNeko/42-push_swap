@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/24 15:16:32 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:08:24 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ static ssize_t	*init_content(int argc, char **argv)
 			|| content[i] > INT_MAX || content[i] < INT_MIN)
 		{
 			free(content);
+			free_split(argv);
 			ft_printf("Error\n");
 			exit(1);
 		}
@@ -127,7 +128,7 @@ int	main(int argc, char **argv)
 		num_count++;
 	content = init_content(num_count, numarr);
 	if (argc == 2)
-		free(numarr);
+		free_split(numarr);
 	compressed = arr_compress(content, num_count);
 	free(content);
 	stack_a = generate_stack(num_count, compressed);

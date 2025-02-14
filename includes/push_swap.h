@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 12:02:50 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/24 16:15:29 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/14 12:04:15 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void	ft_lstclearcircular(t_clist **lst, void (*del)(void *));
 void	ft_lstdelonecircular(t_clist *lst, void (*del)(void *));
 int		ft_lstsizecircular(t_clist *lst);
 int		calculate_bit_size(int count);
+void	free_split(char **arr);
 #endif
