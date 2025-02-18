@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils.c                                             :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:00:48 by znicola           #+#    #+#             */
-/*   Updated: 2025/02/14 12:05:51 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:02:44 by znicola        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,11 @@ int	rotate(t_clist **stack_a, t_clist **stack_b, const char *flag)
 
 void	free_split(char **arr)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!arr)
-		return;
+		return ;
 	while (arr[i])
 	{
 		free(arr[i]);
