@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.c                                              :+:    :+:           */
 /*                                                    +:+ +:+         +:+     */
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/02/14 12:08:24 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:45:06 by znicola        ########   odam.nl        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,24 @@ static t_clist	*generate_stack(int argc, ssize_t *content)
 	return (stack);
 }
 
-static ssize_t	*init_content(int argc, char **argv)
+static ssize_t	*init_content(int count, char **argv, int argc)
 {
 	ssize_t	*content;
 	int		i;
 
-	content = malloc((argc) * sizeof(ssize_t));
+	content = malloc((count) * sizeof(ssize_t));
 	if (!content)
 		return (NULL);
 	i = 0;
-	while (i < argc)
+	while (i < count)
 	{
 		content[i] = ft_atoi(argv[i]);
-		if (!ft_isnumber(argv[i]) || ft_arr_hasduplicatestr(argc, argv)
+		if (!ft_isnumber(argv[i]) || ft_arr_hasduplicatestr(count, argv)
 			|| content[i] > INT_MAX || content[i] < INT_MIN)
 		{
 			free(content);
-			free_split(argv);
+			if (argc == 2)
+				free_split(argv);
 			ft_printf("Error\n");
 			exit(1);
 		}
@@ -126,7 +127,7 @@ int	main(int argc, char **argv)
 	num_count = 0;
 	while (numarr[num_count])
 		num_count++;
-	content = init_content(num_count, numarr);
+	content = init_content(num_count, numarr, argc);
 	if (argc == 2)
 		free_split(numarr);
 	compressed = arr_compress(content, num_count);
