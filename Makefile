@@ -1,6 +1,6 @@
 NAME = push_swap
 
-CC = gcc
+CC = cc
 CFLAGS = -Wextra -Werror -Wall
 
 SRC_DIR = src
