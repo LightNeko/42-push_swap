@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 22:34:33 by znicola           #+#    #+#             */
-/*   Updated: 2025/01/20 22:26:53 by znicola          ###   ########.fr       */
+/*   Updated: 2025/02/28 09:52:07 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	five_sort_stack(t_clist **start, t_clist **end, int size)
 			rotate(start, end, "a");
 		i++;
 	}
-	simple_sort_stack(start, end, 2);
+	if (*(int *)(*start)->content != 2
+		|| (*(int *)(*start)->prev->content != 4))
+		simple_sort_stack(start, end, 2);
 	if (*(int *)(*end)->content == 0)
 		rotate(start, end, "b");
 	push(end, start, 'a');
