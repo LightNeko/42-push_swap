@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/02/28 09:35:02 by znicola          ###   ########.fr       */
+/*   Updated: 2025/03/03 14:38:12 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,12 @@ int	main(int argc, char **argv)
 	ssize_t		*compressed;
 	int			num_count;
 
-	if (argc < 2)
-		return (0);
 	if (argc == 2)
 		numarr = ft_split(argv[1], ' ');
 	else
 		numarr = argv + 1;
+	if (!numarr || !numarr[0] || argc < 2)
+		return (0);
 	num_count = 0;
 	while (numarr[num_count])
 		num_count++;
