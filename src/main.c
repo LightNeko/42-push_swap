@@ -6,7 +6,7 @@
 /*   By: znicola <znicola@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 15:12:56 by znicola           #+#    #+#             */
-/*   Updated: 2025/03/03 14:38:12 by znicola          ###   ########.fr       */
+/*   Updated: 2025/03/04 21:03:01 by znicola          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static ssize_t	*arr_compress(ssize_t *value, int size)
 		result[min_index] = i;
 		i++;
 	}
+	free(value);
 	return (result);
 }
 
@@ -81,6 +82,7 @@ static t_clist	*generate_stack(int argc, ssize_t *content)
 		ft_lstadd_backcircular(&stack, new_node);
 		i++;
 	}
+	free(content);
 	return (stack);
 }
 
@@ -107,6 +109,8 @@ static ssize_t	*init_content(int count, char **argv, int argc)
 		}
 		i++;
 	}
+	if (argc == 2)
+		free_split(argv);
 	return (content);
 }
 
@@ -123,17 +127,17 @@ int	main(int argc, char **argv)
 	else
 		numarr = argv + 1;
 	if (!numarr || !numarr[0] || argc < 2)
+	{
+		if (argc == 2)
+			free_split(numarr);
 		return (0);
+	}
 	num_count = 0;
 	while (numarr[num_count])
 		num_count++;
 	content = init_content(num_count, numarr, argc);
-	if (argc == 2)
-		free_split(numarr);
 	compressed = arr_compress(content, num_count);
-	free(content);
 	stack_a = generate_stack(num_count, compressed);
-	free(compressed);
 	push_swap(stack_a, num_count);
 	ft_lstclearcircular(&stack_a, free);
 	return (0);
